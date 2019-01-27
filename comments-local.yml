@@ -1,0 +1,26 @@
+# tag::secured[]
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://user:password@local-eureka-server:8761/eureka/
+# end::secured[]
+spring:
+  devtools:
+    remote:
+      debug:
+        local-port: 49000
+      secret: thisismysecret
+  rabbitmq:
+    host: ${RABBITMQ_HOST:local-rabbitmq}
+    port: ${RABBITMG_PORT:5672}
+    username: ${RABBITMG_USERNAME:guest}
+    password: ${RABBITMG_PASSWORD:guest}
+
+  data:
+    mongodb:
+      host: ${MONGODB_HOST:local-mongo-server}
+      port: ${MONGODB_PORT:27017}
+      database: ${MONGODB_DB_NAME:lsb2db}
+
