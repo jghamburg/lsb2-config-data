@@ -1,17 +1,10 @@
 server:
   port: 8200
-
-# tag::security[]
 security:
   sessions: never
-# end::security[]
-
-# tag::ribbon[]
 images:
   commentsUser: user
   commentsPassword: password
-# end::ribbon[]
-
 #
 # details on endpoints: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints-exposing-endpoints
 management:

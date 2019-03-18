@@ -1,11 +1,11 @@
-# tag::secured[]
+server:
+  port: 8080
 eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@local-eureka-server:8761/eureka/
-# end::secured[]
+      defaultZone: http://user:password@local-eureka-server:8080/eureka/
 spring:
   devtools:
     remote:
