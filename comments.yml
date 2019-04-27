@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8080
 security:
   sessions: never
   user:
@@ -27,7 +27,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server:8761
+      defaultZone: http://user:password@lsb2-eureka-server:8080
   
 spring:
   rabbitmq:
@@ -42,7 +42,7 @@ spring:
       database: ${MONGODB_DB_NAME:lsb2db}
   cloud:
     config:
-      uri: ${CONFIG_SERVER_URI:http://lsb2-config-server:8888}
+      uri: ${CONFIG_SERVER_URI:http://lsb2-config-server:8080}
     stream:
       bindings:
         input:

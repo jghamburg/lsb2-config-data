@@ -1,5 +1,5 @@
 server:
-  port: 7979
+  port: 8080
 #
 # details on endpoints: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints-exposing-endpoints
 management:
@@ -19,15 +19,15 @@ management:
 
 eureka:
   instance:
-    hostname: localhost
-    port: 8761
+    hostname: lsb2-eureka-server
+    port: 8080
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+      defaultZone: http://lsb2-eureka-server:8080
 
 spring:
   cloud:
     config:
-      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
+      uri: ${CONFIG_SERVER_URI:http://lsb2-config-server:8080}

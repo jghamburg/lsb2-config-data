@@ -1,5 +1,5 @@
 server:
-  port: 9999
+  port: 8080
 spring:
 #
 # details on endpoints: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints-exposing-endpoints
@@ -22,11 +22,11 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server:8761/eureka/
+      defaultZone: http://user:password@lsb2-eureka-server:8080
 spring:
   cloud:
     config:
-      uri: http://lsb2-config-server:8888
+      uri: http://lsb2-config-server:8080
     gateway:
       routes:
       # ========================================================

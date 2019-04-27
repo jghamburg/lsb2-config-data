@@ -1,5 +1,5 @@
 server:
-  port: 8200
+  port: 8080
 security:
   sessions: never
 images:
@@ -28,7 +28,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server:8761
+      defaultZone: http://user:password@lsb2-eureka-server:8080
     instance:
       hostname: lsb2-eureka-server
 # end::secured[]
@@ -36,7 +36,7 @@ eureka:
 spring:
   cloud:
     config:
-      uri: http://lsb2-config-server:8888
+      uri: http://lsb2-config-server:8080
     stream:
       bindings:
         output:
