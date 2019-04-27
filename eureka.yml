@@ -3,7 +3,7 @@ server:
 spring:
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://lsb2-config-server:8888
 #
 # details on endpoints: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints-exposing-endpoints
 management:
@@ -23,9 +23,9 @@ management:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: lsb2-eureka-server
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://user:password@${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://user:password@${eureka.instance.hostname}:${server.port}
