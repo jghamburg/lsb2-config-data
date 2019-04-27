@@ -79,7 +79,7 @@ spring:
     password: ${RABBITMG_PASSWORD:guest}
   data:
     mongodb:
-      host: ${MONGODB_HOST:local-mongodb-server}
+      host: ${MONGODB_HOST:local-mongo-server}
       port: ${MONGODB_PORT:27017}
       database: ${MONGODB_DB_NAME:lsb2db}
 

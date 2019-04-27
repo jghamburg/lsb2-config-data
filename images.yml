@@ -52,7 +52,7 @@ spring:
 
   data:
     mongodb:
-      host: ${MONGODB_HOST:local-mongodb-server:27017}
+      host: ${MONGODB_HOST:local-mongo-server:27017}
       port: ${MONGODB_PORT:27017}
       database: ${MONGODB_DB_NAME:lsb2db}
  
