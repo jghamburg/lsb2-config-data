@@ -22,11 +22,11 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@localhost:8761/eureka/
+      defaultZone: http://user:password@lsb2-eureka-server:8761/eureka/
 spring:
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://lsb2-config-server:8888
     gateway:
       routes:
       # ========================================================
@@ -73,13 +73,13 @@ spring:
           destination: learning-spring-boot-chat-user-messages
           group: topic-chatMessages
   rabbitmq:
-    host: ${RABBITMQ_HOST:localhost}
+    host: ${RABBITMQ_HOST:local-rabbitmq}
     port: ${RABBITMG_PORT:5672}
     username: ${RABBITMG_USERNAME:guest}
     password: ${RABBITMG_PASSWORD:guest}
   data:
     mongodb:
-      host: ${MONGODB_HOST:localhost}
+      host: ${MONGODB_HOST:local-mongodb-server}
       port: ${MONGODB_PORT:27017}
       database: ${MONGODB_DB_NAME:lsb2db}
 
