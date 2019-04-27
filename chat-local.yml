@@ -5,8 +5,11 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@local-eureka-server:8080/eureka
+      defaultZone: ${EUREKA_SERVER_URI:http://user:password@local-eureka-server:8080/eureka}
 spring:
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URI:http://local-config-server:8080}
   devtools:
     livereload:
       enabled: true
@@ -19,7 +22,6 @@ spring:
     port: ${RABBITMG_PORT:5672}
     username: ${RABBITMG_USERNAME:guest}
     password: ${RABBITMG_PASSWORD:guest}
-
   data:
     mongodb:
       host: ${MONGODB_HOST:local-mongo-server}

@@ -1,5 +1,6 @@
 server:
   port: 9999
+spring:
 #
 # details on endpoints: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints-exposing-endpoints
 management:
@@ -16,17 +17,16 @@ management:
   health:
     defaults:
       enabled: true
-# tag::secured[]
 eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@localhost:8761/eureka
-# end::secured[]
-# tag::zuul[]
+      defaultZone: http://user:password@localhost:8761/eureka/
 spring:
   cloud:
+    config:
+      uri: http://localhost:8888
     gateway:
       routes:
       # ========================================================
@@ -56,7 +56,6 @@ spring:
         - Path=/comments/**
         filters:
         - SaveSession
-# end::zuul[]
     stream:
       bindings:
         input:
@@ -73,25 +72,20 @@ spring:
         brokerToClient:
           destination: learning-spring-boot-chat-user-messages
           group: topic-chatMessages
-
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMG_PORT:5672}
     username: ${RABBITMG_USERNAME:guest}
     password: ${RABBITMG_PASSWORD:guest}
-
   data:
     mongodb:
       host: ${MONGODB_HOST:localhost}
       port: ${MONGODB_PORT:27017}
       database: ${MONGODB_DB_NAME:lsb2db}
 
-# tag::security[]
 security:
   sessions: always
-# end::security[]
 
-# tag::ribbon[]
 hystrix:
   command:
     default:
@@ -102,4 +96,3 @@ hystrix:
 ribbon:
   ConnectTimeout: 3000
   ReadTimeout: 60000
-# end::ribbon[]

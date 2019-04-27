@@ -22,14 +22,12 @@ management:
     defaults:
       enabled: true
 
-# tag::secured[]
 eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://user:password@localhost:8761/eureka/
-# end::secured[]
   
 spring:
   rabbitmq:
@@ -37,14 +35,14 @@ spring:
     port: ${RABBITMG_PORT:5672}
     username: ${RABBITMG_USERNAME:guest}
     password: ${RABBITMG_PASSWORD:guest}
-
   data:
     mongodb:
       host: ${MONGODB_HOST:localhost}
       port: ${MONGODB_PORT:27017}
       database: ${MONGODB_DB_NAME:lsb2db}
-
   cloud:
+    config:
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
     stream:
       bindings:
         input:

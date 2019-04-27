@@ -9,3 +9,7 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+spring:
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URI:http://local-config-server:8080}
