@@ -8,7 +8,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server
+      defaultZone: http://user:password@lsb2-eureka-server/eureka/
 spring:
   cloud:
     config:

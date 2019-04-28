@@ -27,7 +27,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server:8080
+      defaultZone: http://user:password@lsb2-eureka-server:8080/eureka/
   
 spring:
   rabbitmq:

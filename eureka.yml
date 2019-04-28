@@ -29,4 +29,4 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server:8080
+      defaultZone: http://user:password@lsb2-eureka-server:8080/eureka/

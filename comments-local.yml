@@ -5,7 +5,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server.local.svc.cluster.local/eureka
+      defaultZone: http://user:password@lsb2-eureka-server.local.svc.cluster.local/eureka/
 spring:
   cloud:
     config:
