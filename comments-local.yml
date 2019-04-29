@@ -16,7 +16,7 @@ spring:
         local-port: 49000
       secret: thisismysecret
   rabbitmq:
-    host: ${RABBITMQ_HOST:local-rabbitmq}
+    host: ${RABBITMQ_HOST:local-rabbitmq.local.svc.cluster.local}
     port: ${RABBITMG_PORT:5672}
     username: ${RABBITMG_USERNAME:guest}
     password: ${RABBITMG_PASSWORD:guest}
