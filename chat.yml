@@ -22,15 +22,17 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://user:password@lsb2-eureka-server:8080/eureka/
-spring:
   cloud:
     config:
       uri: http://lsb2-config-server:8080
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
       # ========================================================
       - id: imagesService
-        uri: lb://IMAGES
+        uri: lb://lsb2-images
         predicates:
         - Path=/imagesService/**
         filters:
@@ -38,19 +40,19 @@ spring:
         - RewritePath=/imagesService, /
         - SaveSession
       - id: images
-        uri: lb://IMAGES
+        uri: lb://lsb2-images
         predicates:
         - Path=/images/**
         filters:
         - SaveSession
       - id: mainCss
-        uri: lb://IMAGES
+        uri: lb://lsb2-images
         predicates:
         - Path=/main.css
         filters:
         - SaveSession
       - id: commentsService
-        uri: lb://IMAGES
+        uri: lb://lsb2-images
         predicates:
         - Path=/comments/**
         filters:
