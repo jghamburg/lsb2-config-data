@@ -22,6 +22,7 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://user:password@lsb2-eureka-server:8080/eureka/
+spring:
   cloud:
     config:
       uri: http://lsb2-config-server:8080
