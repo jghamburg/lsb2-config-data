@@ -16,14 +16,14 @@ spring:
         local-port: 49000
       secret: thisismysecret
   rabbitmq:
-    host: ${RABBITMQ_HOST:local-rabbitmq}
+    host: ${RABBITMQ_HOST:rabbitmq.local}
     port: ${RABBITMG_PORT:5672}
     username: ${RABBITMG_USERNAME:guest}
     password: ${RABBITMG_PASSWORD:guest}
 
   data:
     mongodb:
-      host: ${MONGODB_HOST:local-mongo-server}
+      host: ${MONGODB_HOST:mongo-server.local}
       port: ${MONGODB_PORT:27017}
       database: ${MONGODB_DB_NAME:lsb2db}
 
