@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    config:
+      uri: http://lsb2-config-server
+eureka:
+  instance:
+    hostname: lsb2-eureka-server
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://user:password@lsb2-eureka-server/eureka/

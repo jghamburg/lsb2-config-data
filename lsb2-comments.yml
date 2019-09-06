@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9000
 security:
   sessions: never
   user:
@@ -27,22 +27,22 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:password@lsb2-eureka-server:8080/eureka/
+      defaultZone: http://user:password@localhost:8761/eureka/
   
 spring:
   rabbitmq:
-    host: ${RABBITMQ_HOST:local-rabbitmq}
+    host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMG_PORT:5672}
     username: ${RABBITMG_USERNAME:guest}
     password: ${RABBITMG_PASSWORD:guest}
   data:
     mongodb:
-      host: ${MONGODB_HOST:local-mongo-server}
+      host: ${MONGODB_HOST:localhost}
       port: ${MONGODB_PORT:27017}
       database: ${MONGODB_DB_NAME:lsb2db}
   cloud:
     config:
-      uri: ${CONFIG_SERVER_URI:http://lsb2-config-server:8080}
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
     stream:
       bindings:
         input:
