@@ -14,8 +14,33 @@ management:
     health:
       show-details: always
   health:
-    defaults:
+    diskspace:
       enabled: true
+    db:
+      enabled: true
+    rabbit:
+      enabled: true
+    elasticsearch:
+      enabled: false
+    mongo:
+      enabled: true
+    defaults:
+      enabled: false
+  info:
+    git:
+      enabled: true
+      mode: simple
+  security:
+    enabled: true
+
+# Export to /internal/info
+info:
+  app:
+    name: Chat Springboot Application with WebSockets
+    description: Springboot - Thymeleaf Application with WebSocket Backend communication
+    version: ${project.version}
+  javaVersion: ${java.version}
+
 spring:
   cloud:
     config:
