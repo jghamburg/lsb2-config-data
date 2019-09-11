@@ -38,7 +38,7 @@ info:
   app:
     name: Chat Springboot Application with WebSockets
     description: Springboot - Thymeleaf Application with WebSocket Backend communication
-    version: ${project.version}
+    version: ${version}
   javaVersion: ${java.version}
 
 spring:
