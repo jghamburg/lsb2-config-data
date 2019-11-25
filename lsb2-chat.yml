@@ -41,10 +41,9 @@ info:
     version: ${appversion}
   javaVersion: ${java.version}
 
+spring.main.web-application-type: reactive
+spring.main.allow-bean-definition-overriding: true
 spring:
-  main:
-    web-application-type: reactive
-    allow-bean-definition-overriding: true
   cloud:
     config:
       uri: http://localhost:8888
