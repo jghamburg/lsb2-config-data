@@ -7,7 +7,7 @@ security:
 
 togglz:
   console:
-    secured: ${SECURE_TOGGLZ:true}
+    secured: false
     enabled: true
     path: /actuator/togglz
     use-management-port: false
