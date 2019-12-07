@@ -4,6 +4,19 @@ security:
   sessions: never
   user:
     password: password
+
+togglz:
+  console:
+    secured: ${SECURE_TOGGLZ:true}
+    enabled: true
+    path: /actuator/togglz
+    use-management-port: false
+    feature-admin-authority: ROLE_ADMIN
+  cache:
+    enabled: false # Enable feature state caching.
+    time-to-live: 0 # The time after which a cache entry will expire.
+    time-unit: milliseconds # The time unit as java.util.concurrent.TimeUnit enum name (one of "nanoseconds", "microseconds", "milliseconds", "seconds", "minutes", "hours", "days").
+  feature-enums: com.greglturnquist.learningspringboot.comments.MyFeatures
   
 #
 # details on endpoints: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints-exposing-endpoints
