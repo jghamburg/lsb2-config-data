@@ -51,13 +51,45 @@ spring:
   cloud:
     config:
       uri: ${CONFIG_SERVER_URI:http://localhost:8888}
+    function:
+      definition: save
     stream:
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBITMQ_HOST:localhost}
+                port: ${RABBITMQ_PORT:5672}
+                username: ${RABBITMQ_USERNAME:guest}
+                password: ${RABBITMQ_PASSWORD:guest}
+                virtual-host: /
       bindings:
-        input:
+        save-in-0:
           destination: learning-spring-boot-comments
           group: comments-service
           content-type: application/json
-        output:
+          header-mode: embeddedHeaders
+          max-attempts: 3
+          back-off-initial-interval: 1000
+          back-off-MaxInterval: 10000
+          back-off-multiplier: 2
+          binder: rabbit
+        save-out-0:
           destination: learning-spring-boot-chat
-          group: comments-chat
           content-type: application/json
+          header-mode: embeddedHeaders
+          error-channel-enabled: true
+          binder: rabbit
+      rabbit:
+        bindings:
+          save-in-0:
+            consumer:
+              exchangeType: direct
+              bindingRoutingKey: ${RABBITMQ_EXCHANGE_SAVE_REQUEST_ROUTE_KEY:saveRequests-local}
+          save-out-0:
+            producer:
+              exchangeType: direct
+              routing-key-expression: "'${RABBITMQ_EXCHANGE_SAVE_RESPONSE_ROUTE_KEY:saveResponses-local}'"
+#              routing-key-expression: "'assetsPublishResponses'"
