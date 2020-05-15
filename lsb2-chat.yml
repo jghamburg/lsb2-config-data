@@ -1,93 +1,114 @@
 hystrix:
-    command:
-        default:
-            execution:
-                isolation:
-                    thread:
-                        timeoutInMilliseconds: 60000
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
 info:
-    app:
-        description: Springboot - Thymeleaf Application with WebSocket Backend communication
-        name: Chat Springboot Application with WebSockets
-        version: ${appversion}
-    javaVersion: ${java.version}
+  app:
+    description: Springboot - Thymeleaf Application with WebSocket Backend communication
+    name: Chat Springboot Application with WebSockets
+    version: ${appversion}
+  javaVersion: ${java.version}
 management:
-    endpoint:
-        health:
-            show-details: always
-    endpoints:
-        enabled-by-default: true
-        web:
-            base-path: /actuator
-            exposure:
-                exclude: shutdown
-                include: '*'
+  endpoint:
     health:
-        db:
-            enabled: true
-        defaults:
-            enabled: false
-        diskspace:
-            enabled: true
-        elasticsearch:
-            enabled: false
-        mongo:
-            enabled: true
-        rabbit:
-            enabled: true
-    info:
-        git:
-            enabled: true
-            mode: simple
-    security:
-        enabled: true
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      base-path: /actuator
+      exposure:
+        exclude: shutdown
+        include: '*'
+  health:
+    db:
+      enabled: true
+    defaults:
+      enabled: false
+    diskspace:
+      enabled: true
+    elasticsearch:
+      enabled: false
+    mongo:
+      enabled: true
+    rabbit:
+      enabled: true
+  info:
+    git:
+      enabled: true
+      mode: simple
+  security:
+    enabled: true
 ribbon:
-    ConnectTimeout: 3000
-    ReadTimeout: 60000
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
 security:
-    sessions: always
+  sessions: always
 server:
-    port: 9999
+  port: 9999
 spring:
-    cloud:
-        config:
-            uri: http://localhost:8888
-        gateway:
-            discovery:
-                locator:
-                    enabled: false
-            routes: '[{id=imagesService, uri=http://localhost:8200, predicates=[Path=/imagesService/**],
-                filters=[RewritePath=/imagesService/(?<segment>.*), /${segment}, RewritePath=/imagesService,
-                /, SaveSession]}, {id=images, uri=http://localhost:8200, predicates=[Path=/images/**],
-                filters=[SaveSession]}, {id=mainCss, uri=http://localhost:8200, predicates=[Path=/main.css],
-                filters=[SaveSession]}, {id=commentsService, uri=http://localhost:8200,
-                predicates=[Path=/comments/**], filters=[SaveSession]}]'
-        stream:
-            bindings:
-                brokerToClient:
-                    destination: learning-spring-boot-chat-user-messages
-                    group: topic-chatMessages
-                clientToBroker:
-                    destination: learning-spring-boot-chat-user-messages
-                    group: app-chatMessages
-                input:
-                    content-type: application/json
-                    destination: learning-spring-boot-chat
-                    group: comments-chat
-                newComments:
-                    content-type: application/json
-                    destination: learning-spring-boot-chat
-                    group: comments-chat
-    data:
-        mongodb:
-            database: ${MONGODB_DB_NAME:lsb2db}
-            host: ${MONGODB_HOST:localhost}
-            port: ${MONGODB_PORT:27017}
-    main:
-        allow-bean-definition-overriding: true
-        web-application-type: reactive
-    rabbitmq:
-        host: ${RABBITMQ_HOST:localhost}
-        password: ${RABBITMG_PASSWORD:guest}
-        port: ${RABBITMG_PORT:5672}
-        username: ${RABBITMG_USERNAME:guest}
+  cloud:
+    config:
+      uri: http://localhost:8888
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+      - id: imagesService
+        uri: http://localhost:8200
+        predicates:
+          - Path=/imagesService/**
+        filters:
+          - RewritePath=/imagesService/(?<segment>.*), /$\{segment}
+          - RewritePath=/imagesService, /
+          - SaveSession
+      - id: images
+        uri: http://localhost:8200
+        predicates:
+          - Path: /images/**
+        filters:
+          - SaveSession
+      - id: mainCss
+        uri: http://localhost:8200
+        predicates:
+          - Path:/main.css
+        filters:
+          - SaveSession
+      - id: commentsService
+      - uri: http://localhost:8200
+        predicates:
+          - Path: /comments/**
+        filters:
+          - SaveSession
+    stream:
+      bindings:
+        brokerToClient:
+          destination: learning-spring-boot-chat-user-messages
+          group: topic-chatMessages
+        clientToBroker:
+          destination: learning-spring-boot-chat-user-messages
+          group: app-chatMessages
+        input:
+          content-type: application/json
+          destination: learning-spring-boot-chat
+          group: comments-chat
+        newComments:
+          content-type: application/json
+          destination: learning-spring-boot-chat
+          group: comments-chat
+  data:
+    mongodb:
+      database: ${MONGODB_DB_NAME:lsb2db}
+      host: ${MONGODB_HOST:localhost}
+      port: ${MONGODB_PORT:27017}
+  main:
+    allow-bean-definition-overriding: true
+    web-application-type: reactive
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    password: ${RABBITMG_PASSWORD:guest}
+    port: ${RABBITMG_PORT:5672}
+    username: ${RABBITMG_USERNAME:guest}
