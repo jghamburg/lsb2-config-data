@@ -27,18 +27,32 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+    function:
+      definition: emit
     stream:
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBITMQ_HOST:localhost}
+                port: ${RABBITMQ_PORT:5672}
+                username: ${RABBITMQ_USERNAME:guest}
+                password: ${RABBITMQ_PASSWORD:guest}
+                virtual-host: /
       bindings:
-        output:
+        emit-out-0:
           destination: learning-spring-boot-comments
           group: comments-service
           content-type: application/json
+          binder: rabbit
  
-  rabbitmq:
-    host: ${RABBITMQ_HOST:localhost}
-    port: ${RABBITMG_PORT:5672}
-    username: ${RABBITMG_USERNAME:guest}
-    password: ${RABBITMG_PASSWORD:guest}
+#  rabbitmq:
+#    host: ${RABBITMQ_HOST:localhost}
+#    port: ${RABBITMG_PORT:5672}
+#    username: ${RABBITMG_USERNAME:guest}
+#    password: ${RABBITMG_PASSWORD:guest}
 
   data:
     mongodb:
