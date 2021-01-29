@@ -24,6 +24,8 @@ management:
       enabled: true
 
 spring:
+  config:
+    use-legacy-processing: true  
   cloud:
     config:
       uri: ${CONFIG_SERVER_URI:http://localhost:8888}

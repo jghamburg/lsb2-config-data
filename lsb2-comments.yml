@@ -36,6 +36,8 @@ management:
       enabled: true
 
 spring:
+  config:
+    use-legacy-processing: true  
   session:
     store-type: mongodb
   rabbitmq:
